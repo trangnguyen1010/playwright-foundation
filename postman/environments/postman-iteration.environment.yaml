@@ -1,0 +1,4 @@
+name: postman-iteration
+values:
+  - key: baseUrl
+    value: ''

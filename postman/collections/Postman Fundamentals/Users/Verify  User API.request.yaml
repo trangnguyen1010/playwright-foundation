@@ -1,0 +1,49 @@
+$kind: http-request
+name: Verify  User API
+description: ""
+url: "{{baseUrl}}/api/users?id=1"
+method: GET
+headers:
+  Accept: application/json
+  x-api-key: "{{apiKey}}"
+queryParams:
+  id: "1"
+scripts:
+  - type: beforeRequest
+    code: ""
+    language: text/javascript
+  - type: afterResponse
+    code: |-
+      pm.test("Status should be 200", function(){
+          pm.response.to.have.status(200);
+      })
+
+
+      const response = pm.response.json()
+
+      pm.test("Employee has valid id", function(){
+          pm.expect(response.data.id).to.be.equal(1)
+      })
+
+      pm.test("Employee has correct name", function(){
+          pm.expect(response.data.first_name).to.be.equal("George")
+          pm.expect(response.data.last_name).to.be.equal("Bluth")
+      })
+
+      pm.test("Employee's email does not empty", function(){
+          pm.expect(response.data.email).to.not.be.empty
+      })
+
+      pm.test("Response time", function(){
+          pm.expect(pm.response.responseTime).to.be.below(3000)
+      })
+
+      pm.test("response type is Json", function(){
+          pm.expect(pm.response).to.be.json
+      })
+
+      pm.test("Content type", function(){
+          pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json")
+      })
+    language: text/javascript
+order: 4152751187229777

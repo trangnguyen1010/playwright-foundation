@@ -1,0 +1,33 @@
+$kind: http-request
+name: New Request
+url: "{{baseUrl}}/api/users/2"
+method: GET
+headers:
+  Accept: application/json
+  x-api-key: "{{apiKey}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      const response = pm.response.json();
+      pm.test("Verify status code", function(){
+          pm.response.to.have.status(200);
+      })
+
+      pm.test("Verify response time", function(){
+          pm.expect(pm.response.responseTime).to.be.below(3000)
+      })
+
+      pm.test("Verify content-Type", function(){
+          pm.expect(pm.response.headers.get("Content-Type")).include("application/json")
+      })
+
+      pm.test("Verify email not empty", function(){
+          pm.expect(response.data.email).to.be.not.empty
+      })
+
+      pm.test("Add environment variable", function(){
+          pm.environment.set("userId", response.data.id)
+          pm.expect(Number(pm.environment.get("userId"))).to.equal(response.data.id)
+      })
+    language: text/javascript
+order: 1784810007821

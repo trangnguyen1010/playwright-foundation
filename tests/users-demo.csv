@@ -1,0 +1,4 @@
+scenarioName,userId,expectedEmail,expectedRole,expectedActive
+Admin user,101,admin@example.com,admin,true
+Editor user,102,editor@example.com,editor,true
+Inactive viewer,103,viewer@example.com,viewer,false

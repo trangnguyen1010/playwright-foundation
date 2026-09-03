@@ -1,0 +1,89 @@
+$kind: http-request
+name: Echo User data
+url: "{{baseUrl}}/get?scenario={{scenarioName}}&userId={{userId}}&email={{expectedEmail}}&role={{expectedRole}}&active={{expectedActive}}"
+method: GET
+headers:
+  Accept: application/json
+  X-Test-Source: postman-runner-demo
+queryParams:
+  scenario: "{{scenarioName}}"
+  userId: "{{userId}}"
+  email: "{{expectedEmail}}"
+  role: "{{expectedRole}}"
+  active: "{{expectedActive}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      let responseBody
+
+      try{
+          responseBody = pm.response.json()
+      }catch(error){
+          responseBody = null
+          console.log("Response body is not valid json", error.message)
+      }
+
+      const scenarioName = pm.iterationData.get("scenarioName")
+      const expectedUserId = pm.iterationData.get("userId")
+      const expectedEmail = pm.iterationData.get("expectedEmail")
+      const expectedRole = pm.iterationData.get("expectedRole")
+      const expectedActive = pm.iterationData.get("expectedActive")   
+
+      pm.test(`[${scenarioName}] required iteration data should exist`, function(){
+          pm.expect(pm.iterationData.has("scenarioName"), "Missing scenarioName").to.eql(true)
+          pm.expect(pm.iterationData.has("userId"), "Missing userId").to.eql(true)
+          pm.expect(pm.iterationData.has("expectedEmail"), "Missing expectedEmail").to.eql(true)
+          pm.expect(pm.iterationData.has("expectedRole"), "Missing expectedRole").to.eql(true)
+          pm.expect(pm.iterationData.has("expectedActive"), "Missing expectedActive").to.eql(true)
+      })
+
+      pm.test(`[${scenarioName}] status code should be 200`, function(){
+          pm.response.to.have.status(200)
+      })
+
+      pm.test(`[${scenarioName}] response should contain args object`, function(){
+          pm.expect(responseBody, "Response body should be valid json").to.have.an("object")
+          pm.expect(responseBody).to.have.property("args")
+          pm.expect(responseBody.args).to.be.an("object")
+      })
+
+      if(responseBody?.args){
+          const actualActive = responseBody.args.active === "true"
+          pm.test(`[${scenarioName}] User id should match iteration data`, function(){
+              pm.expect(Number(responseBody.args.userId), "Returned userId is incorrect").to.equal(Number(expectedUserId))
+          })
+          pm.test(`[${scenarioName}] Email and role should match iteration data`, function(){
+              pm.expect(responseBody.args.email, "Returned email is incorrect").to.equal(expectedEmail)
+              pm.expect(responseBody.args.role, "Returned role is incorrect").to.eql(expectedRole)
+          })
+
+          pm.test(`[${scenarioName}] Active value should match iteration data`, function(){
+              pm.expect(actualActive, "Returned active value is incorrect").to.equal(expectedActive)
+          })
+      }
+
+      pm.test(`[${scenarioName}] Request headers should be echoed correctly`, function(){
+          pm.expect(responseBody).to.have.property("headers")
+
+          const echoedHeader = responseBody.headers["x-test-source"]?? responseBody.headers["X-Test-Source"]
+
+          pm.expect(echoedHeader, "X-Test-Source header is missing or incorrect").to.eql("postman-runner-demo")
+      })
+
+      pm.test(`[${scenarioName}] response time should be below 3000ms`, function(){
+          pm.expect(pm.response.responseTime, `Actual response time is [${pm.response.responseTime}] ms`).to.be.below(3000)
+      })
+
+      console.log({
+          iteration: pm.info.iteration,
+          scenarioName,
+          expected: {
+              userId: expectedUserId,
+              email: expectedEmail,
+              role: expectedRole,
+              active: expectedActive
+          },
+          actual: responseBody?.args
+      })
+    language: text/javascript
+order: 1784862520400

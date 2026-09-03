@@ -1,0 +1,41 @@
+$kind: http-request
+name: User
+url: "{{baseUrl}}/api/users?id=1"
+method: GET
+headers:
+  Accept: application/json
+  x-api-key: "{{apiKey}}"
+queryParams:
+  id: "1"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Verify response status", function(){
+          pm.response.to.have.status(200)
+      })
+
+      pm.test("Verify response time", function(){
+          pm.expect(pm.response.responseTime).to.be.below(3000)
+      })
+
+      pm.test("Check iff headers includes application/json", function(){
+          pm.expect(pm.response.headers.get("Content-Type")).include("application/json")
+      })
+
+      const response = pm.response.json()
+      pm.test("Verify response is json file", function(){
+          pm.expect(pm.response).to.be.json
+      })
+
+      pm.test("Verify user id = 1", function(){
+          pm.expect(response.data.id).to.eql(1)
+      })
+      pm.test("verify full name", function(){
+          pm.expect(response.data.first_name).to.eql("George")
+          pm.expect(response.data.last_name).to.eql("Bluth")
+      })
+      pm.test("Verify email not empty", function(){
+          pm.expect(response.data.email).to.not.empty
+      })
+    language: text/javascript
+order: 1784788634973

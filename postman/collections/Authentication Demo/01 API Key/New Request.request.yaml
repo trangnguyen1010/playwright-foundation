@@ -1,0 +1,10 @@
+$kind: http-request
+name: New Request
+url: "{{baseURL}}/get?feature=authentication"
+method: GET
+headers:
+  x-api-key: "{{apiKey}}"
+  Accept: application/json
+queryParams:
+  feature: authentication
+order: 1784730988485

@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/api/users?page=1"
+method: GET
+headers:
+  Accept: application/json
+  x-api-key: "{{apiKey}}"
+queryParams:
+  page: "1"
+examples: .resources/Verify ReqRes Connection.resources/examples
+order: 1784636126494

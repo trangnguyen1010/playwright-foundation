@@ -1,0 +1,38 @@
+$kind: http-request
+name: Employee
+url: "{{baseUrl}}/api/users"
+method: GET
+headers:
+  Accept: application/json
+  x-api-key: "{{apiKey}}"
+scripts:
+  - type: afterResponse
+    code: |
+      const response = pm.response.json();
+
+      pm.test("Verify response code", function(){
+          pm.expect(pm.response.code).to.eql(200)
+      })
+
+      pm.test("Verify response time", function(){
+          pm.expect(pm.response.responseTime).to.be.below(3000)
+      })
+      pm.test("Verify headers include content Type is Json", function(){
+          pm.expect(pm.response.headers.get("Content-Type")).include("application/json")
+      })
+
+      pm.test("Verify data of user is an Array", function(){
+          pm.expect(response.data).to.be.an("array")
+      })
+      pm.test("Verify the data lenght is > 0", function(){
+          pm.expect(response.data.length).to.be.above(0)
+      })
+
+      const firstEmployee = response.data[0]
+      pm.test("Verify data for first employee", function(){
+          pm.expect(firstEmployee.id).to.eql(1) 
+          pm.expect(firstEmployee.first_name).to.eql("George") 
+          pm.expect(firstEmployee.email).to.eql("george.bluth@reqres.in")
+      })
+    language: text/javascript
+order: 4503579921832859

@@ -1,0 +1,15 @@
+$kind: http-request
+name: Missing name
+url: "{{baseUrl}}/api/users"
+method: POST
+headers:
+  Accept: application/json
+  Content-Type: application/json
+  x-api-key: "{{apiKey}}"
+body:
+  type: json
+  content: |-
+    {
+      "job": "QA"
+    }
+order: 4011110632227257

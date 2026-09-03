@@ -1,0 +1,18 @@
+name: ReqRes - Local
+values:
+  - key: baseUrl
+    value: ''
+  - key: apiKey
+    value: ''
+  - key: userId
+    value: ''
+  - key: createUserId
+    value: ''
+  - key: totalPages
+    value: ''
+  - key: employeeId
+    value: ''
+  - key: employeeEmail
+    value: ''
+  - key: EmployeeFirstName
+    value: ''

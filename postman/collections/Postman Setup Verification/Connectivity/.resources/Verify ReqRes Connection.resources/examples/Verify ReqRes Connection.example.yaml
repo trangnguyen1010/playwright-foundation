@@ -1,0 +1,129 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/api/users?userId=1"
+  method: GET
+  headers:
+    Accept: application/json
+    x-api-key: "{{apiKey}}"
+  queryParams:
+    userId: "1"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Tue, 21 Jul 2026 12:24:58 GMT
+    content-type: application/json; charset=utf-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    access-control-allow-origin: "*"
+    cache-control: public, max-age=14400, s-maxage=60
+    cdn-cache-control: max-age=60
+    cross-origin-opener-policy: same-origin
+    cross-origin-resource-policy: same-origin
+    etag: W/"5d4-XQvkHMrepXEn0zOMImZ8QAnJMRI"
+    nel: '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
+    origin-agent-cluster: ?1
+    ratelimit-limit: "20"
+    ratelimit-policy: 20;w=60
+    ratelimit-remaining: "19"
+    ratelimit-reset: "60"
+    referrer-policy: strict-origin-when-cross-origin
+    report-to: '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=QMLJd5KY46HlCP%2F6U8ZgJCrRxqCIty5x1Cmc0lM%2BXhY%3D\u0026sid=c4c9725f-1ab0-44d8-820f-430df2718e11\u0026ts=1784636698"}],"max_age":3600}'
+    reporting-endpoints: heroku-nel="https://nel.heroku.com/reports?s=QMLJd5KY46HlCP%2F6U8ZgJCrRxqCIty5x1Cmc0lM%2BXhY%3D&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&ts=1784636698"
+    server: cloudflare
+    strict-transport-security: max-age=31536000; includeSubDomains
+    via: 1.1 heroku-router
+    x-content-type-options: nosniff
+    x-dns-prefetch-control: off
+    x-download-options: noopen
+    x-frame-options: DENY
+    x-permitted-cross-domain-policies: none
+    x-powered-by: ReqRes.in - Deploy backends in 30 seconds
+    x-ratelimit-limit: "250"
+    x-ratelimit-remaining: "245"
+    x-ratelimit-reset: "1784678400"
+    x-reqres-docs: https://reqres.in
+    x-reqres-message: This API is powered by ReqRes. Deploy your own backend in 30 seconds!
+    x-reqres-templates: https://app.reqres.in/templates
+    x-reqres-tip: Need more than /api/users? Build custom collections - app.reqres.in/dashboard
+    x-reqres-trial: "true"
+    x-reqres-trial-days-remaining: "14"
+    x-reqres-trial-expires: 2026-08-04T11:48:56.758Z
+    x-reqres-upgrade: https://app.reqres.in/upgrade
+    x-request-id: 1aae95c3-8956-2bbb-dd93-47d7692b0255
+    x-robots-tag: noindex, nofollow
+    x-xss-protection: "0"
+    cf-cache-status: MISS
+    content-encoding: br
+    cf-ray: a1ea2f8279ff8643-PER
+  body:
+    type: json
+    content: |-
+      {
+        "page": 1,
+        "per_page": 6,
+        "total": 12,
+        "total_pages": 2,
+        "data": [
+          {
+            "id": 1,
+            "email": "george.bluth@reqres.in",
+            "first_name": "George",
+            "last_name": "Bluth",
+            "avatar": "https://reqres.in/img/faces/1-image.jpg"
+          },
+          {
+            "id": 2,
+            "email": "janet.weaver@reqres.in",
+            "first_name": "Janet",
+            "last_name": "Weaver",
+            "avatar": "https://reqres.in/img/faces/2-image.jpg"
+          },
+          {
+            "id": 3,
+            "email": "emma.wong@reqres.in",
+            "first_name": "Emma",
+            "last_name": "Wong",
+            "avatar": "https://reqres.in/img/faces/3-image.jpg"
+          },
+          {
+            "id": 4,
+            "email": "eve.holt@reqres.in",
+            "first_name": "Eve",
+            "last_name": "Holt",
+            "avatar": "https://reqres.in/img/faces/4-image.jpg"
+          },
+          {
+            "id": 5,
+            "email": "charles.morris@reqres.in",
+            "first_name": "Charles",
+            "last_name": "Morris",
+            "avatar": "https://reqres.in/img/faces/5-image.jpg"
+          },
+          {
+            "id": 6,
+            "email": "tracey.ramos@reqres.in",
+            "first_name": "Tracey",
+            "last_name": "Ramos",
+            "avatar": "https://reqres.in/img/faces/6-image.jpg"
+          }
+        ],
+        "support": {
+          "url": "https://benhowdle.im/first-cto-playbook?utm_source=reqres&utm_medium=json&utm_campaign=referral",
+          "text": "Become a better CTO. A playbook of painful stories and practical advice from a two-time startup CTO."
+        },
+        "_meta": {
+          "powered_by": "ReqRes",
+          "docs_url": "https://app.reqres.in/documentation",
+          "upgrade_url": "https://app.reqres.in/upgrade",
+          "example_url": "https://app.reqres.in/examples/notes-app",
+          "variant": "v1_b",
+          "message": "This is a read-only demo endpoint. Sign up to create your own collections with full CRUD and auth.",
+          "cta": {
+            "label": "Get started",
+            "url": "https://app.reqres.in/upgrade"
+          },
+          "context": "legacy_success"
+        }
+      }
+order: 1784636826712

@@ -1,0 +1,13 @@
+$kind: http-request
+name: Health Check
+url: "{{baseUrl}}/api/users?page=1"
+method: GET
+headers:
+  Accept: application/json
+  x-api-key: "{{apiKey}}"
+queryParams:
+  - key: page
+    value: "1"
+    disabled: false
+    description: ""
+order: 1784637879539

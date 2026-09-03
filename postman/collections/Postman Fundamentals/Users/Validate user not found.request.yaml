@@ -1,0 +1,25 @@
+$kind: http-request
+name: Validate user not found
+url: "{{baseUrl}}/api/users?id=99"
+method: GET
+headers:
+  Accept: application/json
+  x-api-key: "{{apiKey}}"
+queryParams:
+  - key: id
+    value: "99"
+    disabled: false
+    description: ""
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Response status", function(){
+          pm.response.to.have.status(404);
+      })
+
+      const response = pm.response.json() // Converts response to JSON
+      pm.test("Body is empty", function(){
+          pm.expect(response).to.be.empty
+      })
+    language: text/javascript
+order: 4320443848717815

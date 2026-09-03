@@ -1,0 +1,8 @@
+$kind: http-request
+name: Get User By ID - Valid
+url: "{{baseUrl}}/api/users/999"
+method: GET
+headers:
+  Accept: application/json
+  x-api-key: "{{apiKey}}"
+order: 3280727117741391

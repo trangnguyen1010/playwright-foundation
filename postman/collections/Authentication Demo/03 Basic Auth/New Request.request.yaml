@@ -1,0 +1,10 @@
+$kind: http-request
+name: New Request
+url: "{{baseURL}}/basic-auth"
+method: GET
+auth:
+  type: basic
+  credentials:
+    username: "{{username}}"
+    password: "{{password}}"
+order: 1784774838622

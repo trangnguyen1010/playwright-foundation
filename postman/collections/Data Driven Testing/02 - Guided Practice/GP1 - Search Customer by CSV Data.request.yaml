@@ -1,0 +1,35 @@
+$kind: http-request
+name: GP1 - Search Customer by CSV Data
+url: "{{baseUrl}}/get?scenario={{scenarioName}}&customerId={{inputCustomerId}}&customerType={{inputCustomerType}}&region={{inputRegion}}&status={{inputAccountStatus}}"
+method: GET
+headers:
+  Accept: application/json
+  X-Test-Source: guided-practice-csv
+  X-Correlation-Id: "{{$guid}}"
+queryParams:
+  - key: scenario
+    value: "{{scenarioName}}"
+    disabled: false
+    description: ""
+  - key: customerId
+    value: "{{inputCustomerId}}"
+    disabled: false
+    description: ""
+  - key: customerType
+    value: "{{inputCustomerType}}"
+    disabled: false
+    description: ""
+  - key: region
+    value: "{{inputRegion}}"
+    disabled: false
+    description: ""
+  - key: status
+    value: "{{inputAccountStatus}}"
+    disabled: false
+    description: ""
+scripts:
+  - type: afterResponse
+    code: |
+      let responseBody
+    language: text/javascript
+order: 1784902431291

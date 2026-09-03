@@ -1,0 +1,12 @@
+name: postman
+values:
+  - key: baseURL
+    value: ''
+  - key: apiKey
+    value: ''
+  - key: bearerToken
+    value: ''
+  - key: username
+    value: ''
+  - key: password
+    value: ''

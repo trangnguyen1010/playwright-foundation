@@ -1,0 +1,27 @@
+$kind: http-request
+name: Environment Variables
+url: "{{baseUrl}}/api/users/{{employeeId}}"
+method: GET
+headers:
+  Accept: application/json
+  x-api-key: "{{apiKey}}"
+scripts:
+  - type: afterResponse
+    code: |+
+      const response = pm.response.json();
+      pm.test("Add Enviroment variable employeeId ", function () {
+          pm.environment.set("employeeId", response.data.id);
+      })
+
+      pm.test("add Environment variable employeeEmail ", function(){
+          pm.environment.set("employeeEmail", response.data.email)
+          
+      })
+
+      pm.test("Add Environment variable employeeFirstName ", function(){
+          pm.environment.set("EmployeeFirstName", response.data.first_name)
+          
+      })
+
+    language: text/javascript
+order: 1784818604849

@@ -1,0 +1,13 @@
+$kind: http-request
+name: Get Users - Page 2
+url: "{{baseUrl}}/api/users"
+method: GET
+headers:
+  Accept: application/json
+  x-api-key: "{{apiKey}}"
+queryParams:
+  - key: ""
+    value: ""
+    disabled: true
+    description: ""
+order: 2439007557333964

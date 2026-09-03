@@ -1,0 +1,31 @@
+$kind: http-request
+name: Invalid User
+url: "{{baseUrl}}/api/user?id=99999"
+method: GET
+headers:
+  Accept: application/json
+  x-api-key: "{{apiKey}}"
+queryParams:
+  id: "99999"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("verify response status", function(){
+          pm.expect(pm.response.code).to.eql(404)
+      })
+
+      const response = pm.response.json()
+
+      pm.test("Verify the test message in body", function(){
+          pm.expect(response.message).exist
+      })
+
+      pm.test("Verify message field", function(){
+          pm.expect(response.message).not.be.empty
+      })
+
+      pm.test("Verify response time", function(){
+          pm.expect(pm.response.responseTime).to.be.below(3000)
+      })
+    language: text/javascript
+order: 3783531566284534

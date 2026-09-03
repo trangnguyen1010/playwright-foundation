@@ -1,0 +1,36 @@
+$kind: http-request
+name: New Request
+url: "{{baseUrl}}/api/users?page=2"
+method: GET
+headers:
+  Accept: application/json
+  x-api-key: "{{apiKey}}"
+queryParams:
+  page: "2"
+scripts:
+  - type: afterResponse
+    code: |-
+      const response = pm.response.json();
+
+      pm.test("Verify status code", function(){
+          pm.response.to.have.status(200);
+      })
+
+      pm.test("Total pages should be greater than 0", function(){
+          pm.expect(response.total_pages).to.above(0)
+      })
+
+      pm.test("Verify data is an array", function(){
+          pm.expect(response.data).to.be.an('array');
+      })
+
+      pm.test("User array should not be empty", function(){
+          pm.expect(response.data.length).to.above(0)
+      })
+
+      pm.test("Environment totalPages should match response total_pages", function(){
+          pm.environment.set("totalPages", response.total_pages);
+          pm.expect(Number(pm.environment.get("totalPages"))).to.eql(Number(response.total_pages))
+      })
+    language: text/javascript
+order: 1784811179826

@@ -1,0 +1,12 @@
+$kind: http-request
+name: New Request
+url: "{{baseURL}}/get?module=authentication&authType=bearer"
+method: GET
+headers:
+  Authorization: Bearer qa-demo-token
+queryParams:
+  module: authentication
+  authType: bearer
+auth:
+  type: apikey
+order: 1784774071741

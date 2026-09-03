@@ -1,0 +1,32 @@
+$kind: http-request
+name: New Request
+url: "{{baseUrl}}/api/users/{{employeeId}}"
+method: GET
+headers:
+  Accept: application/json
+  x-api-key: "{{apiKey}}"
+scripts:
+  - type: beforeRequest
+    code: ""
+    language: text/javascript
+  - type: afterResponse
+    code: |-
+      
+      const response = pm.response.json();
+
+      pm.test("Verify status code", function(){
+          pm.response.to.have.status(200)
+      })
+
+      pm.test("Verify employee id is match with environment employeeId", function(){
+          pm.expect(Number(response.data.id)).to.eql(Number(pm.environment.get("employeeId")))
+      })
+
+      pm.test("Verify response email is match with environment employeeEmail", function(){
+          pm.expect(pm.environment.get("employeeEmail")).to.equal(response.data.email)
+      })
+      pm.test("Verify first_name is match with environment employeeFirstName", function(){
+          pm.expect(pm.environment.get("EmployeeFirstName")).to.equal(response.data.first_name)
+      })
+    language: text/javascript
+order: 1194000661861405

@@ -1,0 +1,4 @@
+scenarioName,inputCustomerId,inputCustomerType,inputRegion,inputAccountStatus,expectedCustomerId,expectedCustomerType,expectedRegion,expectedAccountStatus
+Active retail customer,2001,retail,WA,active,2001,retail,WA,active
+Suspended business customer,2002,business,NSW,suspended,2002,business,NSW,suspended
+Closed premium customer,2003,premium,VIC,closed,2003,premium,VIC,closed

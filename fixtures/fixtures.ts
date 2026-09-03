@@ -1,0 +1,14 @@
+import {test as base, expect} from "@playwright/test";
+import { TodoPage } from "../pages/TodoPage";
+
+type MyFixtures = { todoPage: TodoPage }
+
+export const test = base.extend<MyFixtures>({
+    todoPage: async({page}, use) => {
+        const todoPage = new TodoPage(page);
+        await todoPage.goto();
+        await use(todoPage);
+    }
+})
+
+export {expect}

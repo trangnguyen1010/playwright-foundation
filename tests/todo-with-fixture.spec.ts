@@ -6,5 +6,5 @@ test('add todo item', async ({todoPage}) => {
     await expect(todoPage.getTodoItem('Buy milk')).toBeVisible();
 
     await todoPage.completeTodo('Buy milk');
-    await expect(todoPage.getTodoItem('Buy milk')).toHaveClass(/failed/);
+    await expect(todoPage.getTodoItem('Buy milk')).toHaveClass(/completed/);
 })
